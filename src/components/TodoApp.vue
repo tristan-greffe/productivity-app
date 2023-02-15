@@ -1,6 +1,3 @@
-<!-- eslint-disable vuejs-accessibility/label-has-for -->
-<!-- eslint-disable max-len -->
-<!-- eslint-disable vuejs-accessibility/form-control-has-label -->
 <template>
   <div class="todoapp">
     <header class="header">
@@ -106,7 +103,6 @@ export default {
       },
       set(value) {
         this.todos.forEach((todo) => {
-          // eslint-disable-next-line no-param-reassign
           todo.completed = value;
         });
       },
