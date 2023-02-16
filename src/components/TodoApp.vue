@@ -1,5 +1,5 @@
 <template>
-  <div class="todoapp">
+  <div class="todo-app" style="min-width: 230px; max-width: 550px; margin-left: auto; margin-right: auto;">
     <header class="header">
       <input type="text" class="new-todo" placeholder="What needs to be done?" v-model="newTodo" @keyup.enter="addTodo">
     </header>
