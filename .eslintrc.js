@@ -18,5 +18,6 @@ module.exports = {
     'max-len': 'off',
     'vuejs-accessibility/form-control-has-label': 'off',
     'import/no-extraneous-dependencies': 'off',
+    'import/extensions': 'off',
   },
 };
