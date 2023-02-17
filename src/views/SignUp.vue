@@ -1,67 +1,134 @@
 <template>
   <div class="signup-page">
-    <h1 class="title">SignUp</h1>
-    <div class="container">
-      <button type="button" class="btn btn-primary">Primary</button>
-
-<h1>L'indémodable vérificateur de formulaire</h1>
-
-<p>Dans ce projet, tu vas faire un vérificateur de formulaire.</p>
-
-<h2>1. Introduction</h2>
-
-<p>Tout site qui se respecte se doit d'avoir un vérificateur de formulaire côté front-end. Pourquoi ? Imagine qu'un utilisateur passe 15 minutes à remplir un formulaire d'inscription. Il clique sur "submit" puis le site lui renvoie un message d'erreur en mode "lol il manque un caractère dans tel champ allez refais tout". En termes d'UX on est plus sur la gentillesse d'un manque d'élément pour dossier administratif (TMTC les visas) que la douceur de Airbnb qui t'envoie de l'amour et te dit en temps réel que tel élément ne va pas.</p>
-
-<p>Ton objectif sera de créer un formulaire complet. Celui-ci, lors du submit, vérifiera la validité de chacun des champs. Si un ou plusieurs des champs sont mauvais, le formulaire ne sera <strong>pas</strong> envoyé, et un message d'erreur devra être écrit en rouge sous chacun des champs nécessitant d'être modifié afin que l'utilisateur puisse savoir ce qui n'est pas bon.</p>
-
-<p>Dès que l'utilisateur clique sur un input pour le modifier, le message d'erreur associé devra disparaître.</p>
-
-<p>Une fois que tous les champs sont bons, alors l'utilisateur est renvoyé sur une page lui indiquant qu'il a tout bien rempli.</p>
-
-<h2>2. Le contenu du formulaire</h2>
-
-<p>Le formulaire devra contenir :</p>
-
-<ul>
-<li>un nom</li>
-<li>un prénom</li>
-<li>un âge</li>
-<li>un email</li>
-<li>une confirmation de l'email</li>
-<li>un password</li>
-<li>une confirmation de password</li>
-<li>Un sélecteur (checkbox, radio...) permettant d'accepter les CGU.</li>
-</ul>
-
-<h3>2.1. <strong>Quelques règles</strong></h3>
-
-<ul>
-<li>Aucun des champs ne devra être vide.</li>
-<li>Le prénom doit faire au minimum 3 lettres</li>
-<li>L'email et sa confirmation doivent être les mêmes</li>
-<li>Le password et sa confirmation également</li>
-<li>L'âge doit être supérieur à 18</li>
-<li>Le password doit contenir au moins 6 caractères (stp, ne mets JAMAIS d'autres règles pour les mots de passe)</li>
-<li>L'email doit avoir le format classique d'un email</li>
-<li>Les CGU doivent être acceptées</li>
-</ul>
-
-<p>Pour certains éléments, tu devras te servir des Regex ;)</p>
-
-<h2>3. Rendu attendu</h2>
-
-<p>Le rendu attendu est un ensemble de fichiers HTML et JavaScript (tu peux y ajouter du CSS si tu veux rendre le tout joli).</p>
-
-<p>Si l'ensemble du formulaire est valide, une fois le formulaire envoyé, l'utilisateur est redirigé vers une autre page HTML lui confirmant que sa demande a bien été prise en compte.</p>
-
-<p>S'il y a une erreur ou plus, elle(s) est/sont indiquée(s) à l'utilisateur et le formulaire n'est pas envoyé.</p>
-
-</div>
+    <section class="vh-100">
+      <div class="container">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+          <div class="col-lg-12 col-xl-11">
+            <div class="card text-black" style="border-radius: 25px;">
+              <div class="card-body p-md-5">
+                <div class="row justify-content-center">
+                  <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+                    <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign up</p>
+                    <form class="mx-1 mx-md-4">
+                      <div class="d-flex flex-row align-items-center mb-4">
+                        <div class="form-outline flex-fill mb-0">
+                          <div class="alert alert-danger" v-show="errorName" role="alert">
+                            Name must be at least 3 letters !
+                          </div>
+                          <label class="form-label" for="form3Example1c">Your Name</label>
+                          <input type="text" id="form3Example1c" class="form-control" @focus="this.errorName = false" ref="name"/>
+                        </div>
+                      </div>
+                      <div class="d-flex flex-row align-items-center mb-4">
+                        <div class="form-outline flex-fill mb-0">
+                          <div class="alert alert-danger" v-show="errorEmail" role="alert">
+                            Please enter a valid email address !
+                          </div>
+                          <label class="form-label" for="form3Example3c">Your Email</label>
+                          <input type="email" id="form3Example3c" class="form-control" @focus="this.errorEmail = false" ref="email" />
+                        </div>
+                      </div>
+                      <div class="d-flex flex-row align-items-center mb-4">
+                        <div class="form-outline flex-fill mb-0">
+                          <div class="alert alert-danger" v-show="errorPassword" role="alert">
+                            Password must contain at least 6 characters !
+                          </div>
+                          <label class="form-label" for="form3Example4c">Password</label>
+                          <input type="password" id="form3Example4c" class="form-control"  @focus="this.errorPassword = false" ref="password" />
+                        </div>
+                      </div>
+                      <div class="d-flex flex-row align-items-center mb-4">
+                        <div class="form-outline flex-fill mb-0">
+                          <div class="alert alert-danger" v-show="errorPasswordConfirmation" role="alert">
+                            Password and password confirmation doesn't match !
+                          </div>
+                          <label class="form-label" for="form3Example4cd">Repeat your password</label>
+                          <input type="password" id="form3Example4cd" class="form-control" @focus="this.errorPasswordConfirmation = false" ref="passwordConfirmation" />
+                        </div>
+                      </div>
+                      <div class="alert alert-danger" v-show="errorTerm" role="alert">
+                        You must accept the terms !
+                      </div>
+                      <div class="form-check d-flex justify-content-center mb-5">
+                        <input class="form-check-input me-2" type="checkbox" ref="term" value="" @focus="this.errorTerm = false" id="form2Example3c" />
+                        <label class="form-check-label" for="form2Example3">
+                          I agree all statements in <a href="#!">Terms of service</a>
+                        </label>
+                      </div>
+                      <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                        <button type="button" class="btn btn-primary btn-lg" @click="submit">Register</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
 </template>
 
 <script>
 export default {
   name: 'signup-page',
+  data() {
+    return {
+      errorName: false,
+      errorEmail: false,
+      errorPassword: false,
+      errorPasswordConfirmation: false,
+      errorTerm: false,
+      checker: false,
+    };
+  },
+  methods: {
+    submit() {
+      if (this.verifForm()) {
+        this.$router.push('/');
+      }
+    },
+    verifForm() {
+      this.checker = true;
+      this.verifName();
+      this.verifEmail();
+      this.verifPassword();
+      this.verifPasswordConfirmation();
+      this.verifTerm();
+      return this.checker;
+    },
+    verifName() {
+      if (this.$refs.name.value.length < 3) {
+        this.errorName = true;
+        this.checker = false;
+      }
+    },
+    verifEmail() {
+      // eslint-disable-next-line no-useless-escape
+      if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.$refs.email.value)) {
+        this.errorEmail = true;
+        this.checker = false;
+      }
+    },
+    verifPassword() {
+      if (this.$refs.password.value.length < 5) {
+        this.errorPassword = true;
+        this.checker = false;
+      }
+    },
+    verifPasswordConfirmation() {
+      if (this.$refs.password.value !== this.$refs.passwordConfirmation.value) {
+        this.errorPasswordConfirmation = true;
+        this.checker = false;
+      }
+    },
+    verifTerm() {
+      if (!this.$refs.term.value) {
+        this.errorTerm = true;
+        this.checker = false;
+      }
+    },
+  },
 };
 </script>
