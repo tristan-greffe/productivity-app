@@ -4,7 +4,7 @@ import TodoList from '../views/TodoList.vue';
 import SignUp from '../views/SignUp.vue';
 import Film from '../views/Film.vue';
 import Meteo from '../views/Meteo.vue';
-import User from '../views/User.vue';
+import Users from '../views/Users.vue';
 import Velib from '../views/Velib.vue';
 
 const routes = [
@@ -34,9 +34,9 @@ const routes = [
     component: Meteo,
   },
   {
-    path: '/user',
-    name: 'user',
-    component: User,
+    path: '/users',
+    name: 'users',
+    component: Users,
   },
   {
     path: '/velib',
